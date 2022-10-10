@@ -1,26 +1,41 @@
-//input.value
+const form = document.querySelector("form");
+const input = document.getElementById("item");
+let listTodo = "";
+const list = document.getElementById("list");
 
-//const form = document.querySelector("form");
-//let Input = document.querySelector('input[type="text]');
+function storeList() {
+  window.localStorage.todoList = list.innerHTML;
+}
 
-let List = document.getElementById("list");
-
-/*Input.addEventListener("keyup", (e) => {
-  if (e.keyCode === 13) {
-    console.log(e.target.value);
+function getTodos() {
+  if (window.localStorage.todoList) {
+    list.innerHTML = window.localStorage.todoList;
+  } else {
+    list.innerHTML = `<li>Cliquez sur un todo pour le supprimer</li>`;
   }
-});*/
+}
 
-//Pour trouver code touche aller sur hextobinary.com
+window.addEventListener("load", getTodos);
 
-let input = document.querySelector("input");
-input.addEventListener("keyup", (e) => {
-  if (e.keyCode === 13) {
-    List.textContent = "*" + e.target.value;
-  }
+input.addEventListener("input", (e) => {
+  listTodo = item.value;
 });
 
-List.addEventListener("click", (e) => {
-  List.style.color = "green";
-  //e.target.remove();
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  list.innerHTML += `<li>${listTodo}</li>`;
+  storeList();
+});
+
+list.addEventListener("click", (e) => {
+  if (e.target.classList.contains("checked")) {
+    e.target.remove();
+  } else {
+    e.target.classList.add("checked");
+  }
+  storeList();
+});
+
+list.addEventListener("click", (e) => {
+  console.log(e.target);
 });
