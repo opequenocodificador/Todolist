@@ -1,0 +1,17 @@
+body{
+    background: rgba(187, 94, 22, 0.726);
+    margin: 0 auto;
+}
+
+.form{
+    align-items: center;
+    text-align: center;
+    display: inline-block;
+}
+
+input{
+    margin: 0 auto;
+    text-align: center;
+}
+
+
